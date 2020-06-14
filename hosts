@@ -1,0 +1,26 @@
+lenovo      ansible_host=localhost
+mountain    ansible_host=192.168.1.133
+rpi20       ansible_host=192.168.1.135
+current-dev ansible_host=192.168.122.230
+
+[prod]
+lenovo
+mountain
+rpi20
+
+[dev]
+current-dev
+
+[freebsd]
+mountain
+current-dev
+
+[linux]
+rpi20
+lenovo
+
+[linux:vars]
+ansible_python_interpreter = /usr/bin/python3
+
+[freebsd:vars]
+ansible_python_interpreter = /usr/local/bin/python3

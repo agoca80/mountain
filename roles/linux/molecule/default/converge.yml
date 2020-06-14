@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: linux
+  become: True
+  tasks:
+    - name: "Include linux"
+      include_role:
+        name: "linux"
