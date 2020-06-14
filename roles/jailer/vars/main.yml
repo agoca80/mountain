@@ -1,0 +1,10 @@
+---
+base_services:
+  - jail
+
+ipv4_addrs: "{{
+  jailer_jails |
+  map(attribute='ipv4') |
+  map('regex_replace', '^(.*)$', '\\1/32') |
+  join(' ')
+}}"

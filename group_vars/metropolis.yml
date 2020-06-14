@@ -1,0 +1,5 @@
+consul_datacenter: metropolis
+consul_cluster:
+    - 192.168.1.201
+    - 192.168.1.202
+    - 192.168.1.203

@@ -1,0 +1,23 @@
+consul_address: 192.168.122.230
+
+freebsd_rc:
+  - key: defaultrouter
+    value: 192.168.122.1
+
+jailer_interface: vtnet0
+jailer_distsite: ftp://ftp.freebsd.org/pub/FreeBSD/snapshots/amd64/13.0-CURRENT
+jailer_directory: /jail
+jailer_base_root: /jail/base
+jailer_jails:
+  - name: test
+    state: present
+    ipv4: 192.168.122.100
+  - name: consul01
+    state: present
+    ipv4: 192.168.122.101
+  - name: consul02
+    state: present
+    ipv4: 192.168.122.102
+  - name: consul03
+    state: present
+    ipv4: 192.168.122.103

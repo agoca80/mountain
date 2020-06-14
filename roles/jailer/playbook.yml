@@ -1,0 +1,7 @@
+---
+- hosts: all
+  name: jailer
+  tasks:
+    - name: "Include roles/jailer"
+      include_role:
+        name: "roles/jailer"

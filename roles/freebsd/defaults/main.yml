@@ -1,2 +1,6 @@
 ---
-# defaults file for freebsd
+freebsd_exports: [ ]
+
+freebsd_packages: [ ]
+
+freebsd_rc: [ ]

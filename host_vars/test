@@ -1,0 +1,4 @@
+consul_address: 192.168.122.100
+
+freebsd_services:
+  - jenkins-lts

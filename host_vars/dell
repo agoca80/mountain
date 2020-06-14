@@ -1,0 +1,4 @@
+---
+arch: amd64
+dist: linux
+nfs_exports_state: absent

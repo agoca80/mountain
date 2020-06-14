@@ -1,2 +1,7 @@
 ---
-# tasks file for freebsd
+- name: configure rc entries
+  loop: "{{ freebsd_rc }}"
+  lineinfile:
+    regexp: "^{{ item.key }}="
+    path:   "/etc/rc.conf"
+    line:   "{{ item.key }}=\"{{ item.value }}\""

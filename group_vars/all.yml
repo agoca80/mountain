@@ -1,0 +1,12 @@
+---
+# group_vars/all.yml
+
+consul_zip: https://releases.hashicorp.com/consul/1.8.0/consul_1.8.0_{{ dist }}_{{ arch }}.zip
+
+downloads_host: 192.168.1.137
+downloads_path: /mnt/pool/atic/downloads
+downloads_src: "{{ downloads_host }}:/pool/atic/downloads"
+
+repo_host: 192.168.1.137
+repo_nfs_path: /mnt/pool/atic/repo
+repo_nfs_src: "{{ repo_host }}:/pool/atic/repo"

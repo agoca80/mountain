@@ -1,10 +1,5 @@
 ---
-- name: Remove packages
-  package: name={{ item }} state=absent
-  loop:
-  - nano
-
-- name: Set timezone
+- name: set timezone
   copy: 
     dest: /etc/timezone
     content: Europe/Madrid
@@ -12,3 +7,7 @@
     group: root
     mode: "0644"
   notify: configure timezone
+
+- name: set hostname
+  hostname:
+    name: "{{ base_hostname }}"

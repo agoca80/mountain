@@ -1,0 +1,14 @@
+---
+- name: freebsd
+  hosts: freebsd
+  roles:
+    - consul
+    - freebsd
+    - base
+
+- name: linux
+  hosts: linux
+  roles:
+    - consul
+    - linux
+    - base

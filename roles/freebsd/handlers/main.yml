@@ -1,2 +1,6 @@
 ---
-# handlers file for freebsd
+- name: restart nfsd
+  service:
+    name: nfsd
+    state: restarted
+    enabled: yes

@@ -1,0 +1,2 @@
+consul_server: yes
+consul_node_name: thaumiel

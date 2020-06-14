@@ -1,0 +1,3 @@
+consul_address: 192.168.1.203
+consul_node_name: chokmah
+consul_server: "true"

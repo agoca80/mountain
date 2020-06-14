@@ -1,0 +1,20 @@
+---
+# group_vars/linux.yml
+
+ansible_python_interpreter: /usr/bin/python3
+
+base_packages:
+  - collectd
+  - consul
+  - curl
+  - git
+  - jq
+  - python3
+  - rsync
+  - sudo
+  - tmux
+  - unzip
+
+consul_etc_dir: /etc/consul.d
+
+root_group: root

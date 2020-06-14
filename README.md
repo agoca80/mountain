@@ -7,7 +7,9 @@ By default, ansible will look for the ansible.cfg file in the current working di
 ## FreeBSD
 
 ```
-pkg install python3
+pkg install python3 sudo
+visudo
+ssh-copy-id $HOST
 ```
 
 # Examples

@@ -1,0 +1,44 @@
+---
+# roles/base/tasks/main.yml
+
+- name: sysctl entries
+  loop: "{{ base_sysctls }}"
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    sysctl_set: yes
+
+- name: install packages
+  package:
+    name: "{{ base_packages }}"
+
+- name: base services
+  loop: "{{ base_services }}"
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+
+# - name: Configure /etc/exports
+#   loop: "{{ base_exports }}"
+#   lineinfile:
+#     path: /etc/exports
+#     line: "{{ item }}"
+#     create: yes
+#     backup: yes
+
+# - name: mount nfs exports
+#   loop: "{{ base_mounts }}"
+#   mount:
+#     fstype: nfs
+#     path: "{{ item.path }}"
+#     src: "{{ item.src }}"
+#     state: "mounted"
+
+- name: Ensure local directories exist
+  file:
+    name: /usr/local/{{ item }}
+    state: directory
+  loop:
+    - bin
+    - etc

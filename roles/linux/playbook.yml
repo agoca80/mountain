@@ -1,0 +1,7 @@
+---
+- name: linux
+  hosts: linux
+  tasks:
+    - name: "Include linux"
+      include_role:
+        name: "roles/linux"

@@ -1,0 +1,7 @@
+---
+- name: consul
+  hosts: consul
+  tasks:
+    - name: Include roles/consul
+      include_role:
+        name: "roles/consul"
