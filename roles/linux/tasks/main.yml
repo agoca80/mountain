@@ -10,4 +10,4 @@
 
 - name: set hostname
   hostname:
-    name: "{{ base_hostname }}"
+    name: "{{ ansible_hostname }}"

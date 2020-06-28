@@ -1,7 +1,10 @@
 ---
-- name: configure rc entries
-  loop: "{{ freebsd_rc }}"
-  lineinfile:
-    regexp: "^{{ item.key }}="
-    path:   "/etc/rc.conf"
-    line:   "{{ item.key }}=\"{{ item.value }}\""
+- name: include zfs
+  when: zfs_enabled is defined
+  include_role:
+    name: roles/zfs
+
+- name: include jailer
+  when: jailer is defined
+  include_role:
+    name: roles/jailer

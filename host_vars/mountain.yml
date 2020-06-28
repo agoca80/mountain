@@ -1,14 +1,15 @@
 ---
-base_exports:
-  - /pool/atic/repo      -maproot=root -network 192.168 -mask 255.255.0.0
-  - /pool/atic/downloads -maproot=root -network 192.168 -mask 255.255.0.0
+# base_exports:
+#   - /pool/atic/repo      -maproot=root -network 192.168 -mask 255.255.0.0
+#   - /pool/atic/downloads -maproot=root -network 192.168 -mask 255.255.0.0
 
-freebsd_rc:
-  - key: mountd_flags
-    value: -r
+# freebsd_rc:
+#   - key: mountd_flags
+#     value: -r
 
+jailer: yes
 jailer_base_root: /pool/data/jail/base
-jailer_base_snapshot: 3
+jailer_base_snapshot: 5
 jailer_distsite: ftp://ftp.freebsd.org/pub/FreeBSD/releases/amd64/12.1-RELEASE
 jailer_dataset: zdata/jail
 jailer_directory: /pool/data/jail
@@ -23,6 +24,14 @@ jailer_jails:
   - name: consul13
     state: present
     ipv4: 192.168.1.203
+  - name: jenkins11
+    state: present
+    ipv4: 192.168.1.211
+  - name: monitor11
+    ipv4: 192.168.1.221
+    state: present
+
+zfs_enabled: yes
 
 zfs_datasets:
   - dataset: zdata/backup

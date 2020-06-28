@@ -1,7 +1,6 @@
 ---
 # defaults for roles/base
 
-base_hostname: "{{ inventory_hostname }}"
 base_exports: [ ]
 base_packages: [ ]
 base_mounts: [ ]

@@ -4,6 +4,7 @@ freebsd_rc:
   - key: defaultrouter
     value: 192.168.122.1
 
+jailer: yes
 jailer_interface: vtnet0
 jailer_distsite: ftp://ftp.freebsd.org/pub/FreeBSD/snapshots/amd64/13.0-CURRENT
 jailer_directory: /jail
@@ -21,3 +22,6 @@ jailer_jails:
   - name: consul03
     state: present
     ipv4: 192.168.122.103
+  - name: jenkins01
+    state: present
+    ipv4: 192.168.122.111

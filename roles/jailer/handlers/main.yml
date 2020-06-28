@@ -1,11 +1,11 @@
 ---
-- name: restart jail interface
+- name: restart interface
   service:
     name: netif
     state: restarted
     args: "{{ jailer_interface }}"
 
-- name: restart jail service
+- name: restart service
   service:
     name: jail
     state: restarted

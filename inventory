@@ -1,11 +1,10 @@
-[jailer]
-current
-mountain
-
 [freebsd]
 consul[01:03]
 consul[11:13]
 current
+jenkins01
+jenkins11
+monitor11
 mountain
 test
 
@@ -19,13 +18,23 @@ rpi30
 consul[01:03]
 consul[11:13]
 
+[jenkins]
+jenkins01
+jenkins11
+
 [inferno]
+current
 consul[01:03]
+jenkins01
 test
 
 [metropolis]
 consul[11:13]
-current
+jenkins11
+monitor11
 mountain
 rpi20
 rpi30
+
+[monitor]
+monitor11

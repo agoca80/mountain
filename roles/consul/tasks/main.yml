@@ -2,19 +2,15 @@
 # roles/consul/tasks/main.yml
 # https://www.digitalocean.com/community/tutorial_series/getting-started-with-consul
 
-- name: install package
-  package:
-    name: consul
+- name: ensure {{ consul_etc_dir }} exists
+  file:
+    path: "{{ consul_etc_dir }}"
+    state: directory
 
-- name: configure consul
-  notify: restart consul
+- name: configure
+  notify: consul restart
   template:
     src: cluster.json.j2
     dest: "{{ consul_etc_dir}}/cluster.json"
     owner: root
     group: "{{ root_group }}"
-
-- name: enable service
-  service:
-    name: consul
-    enabled: true

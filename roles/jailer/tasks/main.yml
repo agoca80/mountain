@@ -1,9 +1,13 @@
-- name: configure ipv4 addresses
+- name: debug interface
+  debug:
+    var: ipv4_addrs
+
+- name: configure interface
   lineinfile:
     regexp: "^ipv4_addrs_{{ jailer_interface }}="
     path:   "/etc/rc.conf"
     line:   "ipv4_addrs_{{ jailer_interface }}=\"{{ ipv4_addrs }}\""
-  notify: restart jail interface
+  notify: restart interface
 
 - name: Create freebsd-dist
   file:
@@ -53,7 +57,7 @@
     group: wheel
     mode: "0644"
     backup: yes
-  notify: restart jail service
+  notify: restart service
 
 - name: Create jails
   block:

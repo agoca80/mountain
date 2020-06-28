@@ -1,8 +1,0 @@
----
-- become: yes
-  name: base
-  hosts: all
-  tasks:
-    - name: "Include roles/base"
-      include_role:
-        name: "roles/base"

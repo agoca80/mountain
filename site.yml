@@ -2,13 +2,25 @@
 - name: freebsd
   hosts: freebsd
   roles:
-    - consul
     - freebsd
-    - base
 
 - name: linux
   hosts: linux
   roles:
-    - consul
     - linux
+
+- name: base
+  hosts: all
+  roles:
     - base
+    - consul
+  
+- name: jenkins
+  hosts: jenkins
+  roles:
+    - jenkins
+
+- name: monitor
+  hosts: monitor
+  roles:
+    - monitor

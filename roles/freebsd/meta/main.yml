@@ -1,6 +1,0 @@
----
-# roles/freebsd/meta/main.yml
-
-dependencies:
-  - role: zfs
-  - role: jailer

@@ -10,7 +10,7 @@
   "server": {{ consul_server }},
   "ui": {{ consul_server }},
   {% if consul_server == "true" -%}
-  "bootstrap_expect": {{ consul_cluster | length }},
+    "bootstrap_expect": {{ consul_cluster | length }},
   {% endif -%}
   "skip_leave_on_interrupt": true,
   "rejoin_after_leave": true,

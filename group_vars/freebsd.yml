@@ -3,9 +3,6 @@
 
 ansible_python_interpreter: /usr/local/bin/python3
 
-arch: amd64
-dist: freebsd
-
 base_packages:
   - collectd5
   - consul
@@ -21,12 +18,6 @@ base_packages:
 
 consul_etc_dir: /usr/local/etc/consul.d
 
-freebsd_rc:
-  - key: consul_syslog_output_enable
-    value: "YES"
-  - key: consul_user
-    value: consul
-  - key: consul_group
-    value: consul
+jenkins_package: jenkins-lts
 
 root_group: wheel

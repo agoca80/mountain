@@ -12,29 +12,6 @@
   package:
     name: "{{ base_packages }}"
 
-- name: base services
-  loop: "{{ base_services }}"
-  service:
-    name: "{{ item }}"
-    state: started
-    enabled: true
-
-# - name: Configure /etc/exports
-#   loop: "{{ base_exports }}"
-#   lineinfile:
-#     path: /etc/exports
-#     line: "{{ item }}"
-#     create: yes
-#     backup: yes
-
-# - name: mount nfs exports
-#   loop: "{{ base_mounts }}"
-#   mount:
-#     fstype: nfs
-#     path: "{{ item.path }}"
-#     src: "{{ item.src }}"
-#     state: "mounted"
-
 - name: Ensure local directories exist
   file:
     name: /usr/local/{{ item }}
@@ -42,3 +19,10 @@
   loop:
     - bin
     - etc
+
+- name: hosts entries
+  loop:
+    - "127.0.0.1 {{ ansible_hostname }}"
+  lineinfile:
+    line: "{{ item }}"
+    path: /etc/hosts
