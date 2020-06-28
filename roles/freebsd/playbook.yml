@@ -1,8 +1,0 @@
----
-- become: yes
-  name: freebsd
-  hosts: freebsd
-  tasks:
-    - name: Include roles/freebsd
-      include_role:
-        name: "roles/freebsd"

@@ -1,0 +1,8 @@
+---
+
+dependencies:
+  - role: service
+    service: jenkins
+    packages:
+      - jenkins-lts
+      - py37-ansible

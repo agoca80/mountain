@@ -1,0 +1,10 @@
+---
+dependencies:
+  - role: service
+    service: consul
+    packages:
+      - consul
+    rc:
+      consul_syslog_output_enable: "YES"
+      consul_user: consul
+      consul_group: consul

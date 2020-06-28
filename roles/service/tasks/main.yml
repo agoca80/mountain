@@ -1,0 +1,20 @@
+---
+# roles/service/tasks/main.yml
+
+- name: "{{ service }}: install packages"
+  loop: "{{ packages }}"
+  package:
+    name: "{{ item }}"
+
+- name: "{{ service }}: enable service"
+  service:
+    name: "{{ service }}"
+    enabled: yes
+
+- name: "{{ service }}: rc entries"
+  loop: "{{ rc | dict2items }}"
+  lineinfile:
+    regexp: "^{{ item.key }}="
+    path:   "/etc/rc.conf"
+    line:   "{{ item.key }}=\"{{ item.value }}\""
+  notify: "{{ service }} restart"
