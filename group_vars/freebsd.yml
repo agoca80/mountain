@@ -4,8 +4,6 @@
 ansible_python_interpreter: /usr/local/bin/python3
 
 base_packages:
-  - collectd5
-  - consul
   - curl
   - git-lite
   - gtar

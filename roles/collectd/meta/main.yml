@@ -1,0 +1,8 @@
+---
+# roles/collectd/meta/main.yml
+
+dependencies:
+  - role: service
+    service: collectd
+    packages: [ collectd5 ]
+    enable: [ collectd, collectdmon ]

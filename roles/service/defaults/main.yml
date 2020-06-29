@@ -1,3 +1,4 @@
 ---
-packages: { }
+enable: "{{ service | list }}"
+packages: [ ]
 rc: { }

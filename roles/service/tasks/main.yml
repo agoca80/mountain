@@ -7,8 +7,9 @@
     name: "{{ item }}"
 
 - name: "{{ service }}: enable service"
+  loop: "{{ enable }}"
   service:
-    name: "{{ service }}"
+    name: "{{ item }}"
     enabled: yes
 
 - name: "{{ service }}: rc entries"
