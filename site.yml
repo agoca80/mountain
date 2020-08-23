@@ -1,0 +1,22 @@
+---
+- name: base
+  hosts: all
+  roles: [ base ]
+
+- name: jailer
+  hosts:
+    - current
+    - mountain
+  roles: [ zfs, jailer ]
+
+- name: vault
+  hosts: vault
+  roles: [ vault ]
+  
+- name: jenkins
+  hosts: jenkins
+  roles: [ jenkins ]
+
+# - name: monitor
+#   hosts: monitor
+#   roles: [ monitor ]

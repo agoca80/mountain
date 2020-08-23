@@ -1,0 +1,16 @@
+listener "tcp" {
+  address         = "{{ ansible_host }}:8200"
+  cluster_address = "{{ ansible_host }}:8201"
+  tls_disable     = "true"
+  # tls_cert_file = "cert.pem"
+  # tls_key_file  = "key.pem"
+}
+
+storage "consul" {
+  address = "{{ ansible_host }}:8500"
+}
+
+api_addr      = "http://{{ ansible_host }}:8200"
+cluster_addr  = "https://{{ ansible_host }}:8201"
+disable_mlock = "true"
+ui            = "true"

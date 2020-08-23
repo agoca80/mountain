@@ -1,0 +1,8 @@
+---
+# roles/jailer/meta/main.yml
+
+dependencies:
+  - role: service
+    service: jail
+    enable:
+      - jail

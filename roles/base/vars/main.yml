@@ -1,0 +1,14 @@
+---
+# roles/base/vars/main.yml
+
+base_exports: [ ]
+
+base_packages: [ ]
+
+base_mounts: [ ]
+
+base_network: { }
+
+base_services: [ ]
+
+base_sysctls: { }

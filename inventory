@@ -1,0 +1,31 @@
+[inferno]
+consul01  ansible_host=192.168.122.101
+consul02  ansible_host=192.168.122.102
+consul03  ansible_host=192.168.122.103
+current   ansible_host=192.168.122.230
+jenkins01
+
+[metropolis]
+devel     ansible_host=192.168.1.18
+consul11  ansible_host=192.168.1.31
+consul12  ansible_host=192.168.1.32
+consul13  ansible_host=192.168.1.33
+jenkins   ansible_host=192.168.1.21
+monitor11 ansible_host=192.168.1.221
+mountain  ansible_host=192.168.1.10
+test      ansible_host=192.168.1.19
+vault1    ansible_host=192.168.1.27
+vault2    ansible_host=192.168.1.28
+
+[consul]
+consul[01:03]
+consul[11:13]
+
+[consul:vars]
+consul_server=true
+
+[vault]
+vault[1:2]
+
+[monitor]
+monitor11

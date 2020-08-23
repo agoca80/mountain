@@ -1,0 +1,8 @@
+---
+# consul/handlers/main.yml
+
+- name: "{{ service }} restart"
+  loop: "{{ enable }}"
+  service:
+    name: "{{ item }}"
+    state: restarted

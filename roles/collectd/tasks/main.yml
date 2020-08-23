@@ -1,0 +1,8 @@
+---
+# roles/collectd/tasks/main.yml
+
+- name: configure collectd
+  notify: collectd restart
+  template:
+    dest: /usr/local/etc/collectd.conf
+    src: collectd.conf.j2

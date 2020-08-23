@@ -1,0 +1,9 @@
+---
+# vault/playbook.yml
+
+- name: vault
+  hosts: vault
+  tasks:
+    - name: Include vault role
+      include_role:
+        name: roles/vault

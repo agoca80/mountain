@@ -1,0 +1,10 @@
+---
+# group_vars/metropolis
+
+consul_datacenter: metropolis
+consul_cluster:
+  - 192.168.1.31
+  - 192.168.1.32
+  - 192.168.1.33
+
+pkgbase_host: mountain

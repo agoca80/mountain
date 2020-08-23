@@ -1,0 +1,14 @@
+---
+# vault/meta/main.yml
+
+dependencies:  
+  - role: service
+    service: vault
+    enable:
+      - vault
+    packages:
+      - vault
+    rc:
+      vault_syslog_output_enable: "YES"
+      vault_user: vault
+      vault_group: vault

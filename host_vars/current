@@ -1,0 +1,14 @@
+jails_addresses: 192.168.122.100-104
+jails_dataset: jails
+jails_interface: vtnet0
+jails_distsite: ftp://ftp.freebsd.org/pub/FreeBSD/snapshots/amd64/13.0-CURRENT
+jails:
+  - { name: test      , state: present , ipv4: 192.168.122.100 }
+  - { name: consul01  , state: present , ipv4: 192.168.122.101 }
+  - { name: consul02  , state: present , ipv4: 192.168.122.102 }
+  - { name: consul03  , state: present , ipv4: 192.168.122.103 }
+  - { name: jenkins01 , state: present , ipv4: 192.168.122.104 }
+
+zfs_pools:
+  - name: jails
+    device: /dev/vtbd1

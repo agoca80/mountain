@@ -1,0 +1,14 @@
+---
+
+dependencies:
+  - role: service
+    service: jenkins
+    enable:
+      - jenkins
+    packages:
+      - docker
+      - helm
+      - jenkins-lts
+      - git-lite
+      - kubectl
+      - py37-ansible

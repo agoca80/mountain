@@ -1,0 +1,33 @@
+base_network:
+  autobridge_bridge0: em0
+  autobridge_interfaces: bridge0
+  cloned_interfaces: bridge0
+  ifconfig_em0: inet 192.168.1.10 netmask 255.255.255.0
+  ifconfig_em0_alias0: 192.168.1.18-33
+
+base_packages:
+  - bhyve-firmware
+  - git-lite
+  - py37-ansible
+  - tmux
+
+base_sysctls:
+  kern.vt.enable_bell: 0
+  net.link.tap.up_on_open: 1
+
+jails_base_snapshot: 6
+jails_dataset: zatic/jails
+jails_distsite: ftp://ftp.freebsd.org/pub/FreeBSD/snapshots/amd64/13.0-CURRENT
+jails_mountpoint: /atic/jails
+
+jails:
+  - { name: devel    , state: present , ipv4: 192.168.1.18 }
+  - { name: test     , state: present , ipv4: 192.168.1.19 }
+  - { name: base     , state: present , ipv4: 192.168.1.20 }
+  - { name: jenkins  , state: present , ipv4: 192.168.1.21 }
+  - { name: ldap     , state: present , ipv4: 192.168.1.22 }
+  - { name: consul11 , state: present , ipv4: 192.168.1.31 }
+  - { name: consul12 , state: present , ipv4: 192.168.1.32 }
+  - { name: consul13 , state: present , ipv4: 192.168.1.33 }
+  - { name: vault1   , state: present , ipv4: 192.168.1.27 }
+  - { name: vault2   , state: present , ipv4: 192.168.1.28 }

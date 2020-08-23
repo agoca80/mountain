@@ -1,0 +1,37 @@
+---
+# roles/base/tasks/main.yml
+
+- name: base sysctl
+  loop: "{{ base_sysctls | dict2items }}"
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    sysctl_set: yes
+
+- name: base packages
+  package:
+    name: "{{ base_packages }}"
+
+- name: Ensure local directories exist
+  file:
+    name: /usr/local/{{ item }}
+    state: directory
+  loop:
+    - bin
+    - etc
+
+- name: hosts entries
+  loop:
+    - "127.0.0.1 {{ ansible_hostname }}"
+  lineinfile:
+    line: "{{ item }}"
+    path: /etc/hosts
+
+- name: base network
+  loop: "{{ base_network | dict2items }}"
+  lineinfile:
+    backup: yes
+    regexp: "^{{ item.key }}="
+    path:   "/etc/rc.conf"
+    line:   '{{ item.key }}="{{ item.value }}"'
+  notify: restart network

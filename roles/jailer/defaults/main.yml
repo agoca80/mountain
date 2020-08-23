@@ -1,0 +1,18 @@
+---
+# jailer/defaults/main.yml
+
+jails_base_snapshot: 0
+
+jails_conf: |
+  allow.raw_sockets;
+  
+  exec.start = "/bin/sh /etc/rc";
+  exec.stop  = "/bin/sh /etc/rc.shutdown jail";
+  exec.clean;
+  
+  # mount.devfs;
+  # mount.fdescfs;
+  # mount.procfs;
+  
+  path          = "/{{ jails_mountpoint }}/$name";
+  host.hostname = "$name";

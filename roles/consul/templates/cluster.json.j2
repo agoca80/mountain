@@ -1,0 +1,23 @@
+{
+  "bind_addr": "{{ ansible_host }}",
+  "client_addr": "{{ ansible_host }}",
+  "datacenter": "{{ consul_datacenter }}",
+  "data_dir": "{{ consul_data_dir }}",
+  "encrypt": "{{ consul_keygen }}",
+  "leave_on_terminate": false,
+  "log_level": "INFO",
+  "node_name": "{{ ansible_hostname }}",
+  "server": {{ consul_server }},
+  "ui": {{ consul_server }},
+  {% if consul_server == "true" -%}
+    "bootstrap_expect": {{ consul_cluster | length }},
+  {% endif -%}
+  "skip_leave_on_interrupt": true,
+  "rejoin_after_leave": true,
+  "retry_join": {{
+    consul_cluster                     |
+    map('regex_replace', '$', ':8301') |
+    list                               |
+    to_json
+  }}
+}

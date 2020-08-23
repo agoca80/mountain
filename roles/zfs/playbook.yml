@@ -1,0 +1,7 @@
+---
+- name: zfs
+  hosts: zfs
+  tasks:
+    - name: Include roles/zfs
+      include_role:
+        name: roles/zfs

@@ -1,0 +1,11 @@
+---
+# ldap/meta/main.yml
+dependencies:
+  - role: service
+    service: slapd
+    enable:
+      - slapd
+    packages:
+      - openldap-server
+    rc:
+      slapd_flags: -F {{ ldap_etc_dir }}/slapd.d

@@ -1,0 +1,6 @@
+---
+#
+zfs_datasets: [ ]
+
+#
+zfs_pools: [ ]

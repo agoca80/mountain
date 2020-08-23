@@ -1,0 +1,15 @@
+---
+# tasks file for roles/zfs
+
+- name: Create zfs pools
+  loop: "{{ zfs_pools }}"
+  command: zpool create -f -m /{{ item.name }} {{ item.name }} {{ item.device }}
+  args:
+    creates: /{{ item.name }}
+
+- name: Create zfs datasets
+  loop: "{{ zfs_datasets }}"
+  zfs:
+    name: "{{ item.dataset }}"
+    extra_zfs_properties: "{{ item.properties }}"
+    state: "{{ item.state }}"

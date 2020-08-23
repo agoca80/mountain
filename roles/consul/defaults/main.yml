@@ -1,0 +1,7 @@
+---
+# roles/consul/defaults/main.yml
+
+consul_data_dir: "/var/db/consul"
+consul_keygen: "{{ lookup('env', 'consul_keygen') }}"
+consul_node_name: "{{ inventory_hostname }}"
+consul_server: "false"

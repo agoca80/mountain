@@ -1,0 +1,18 @@
+---
+# group_vars/all
+
+ansible_python_interpreter: /usr/local/bin/python3
+
+base_packages:
+  - sudo
+  - python37
+  # - git-lite
+  # - gtar
+  # - jq
+  # - rsync
+  # - tmux
+  # - unzip
+
+consul_etc_dir: /usr/local/etc/consul.d
+
+root_group: wheel
