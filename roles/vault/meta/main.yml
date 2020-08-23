@@ -4,8 +4,6 @@
 dependencies:  
   - role: service
     service: vault
-    enable:
-      - vault
     packages:
       - vault
     rc:

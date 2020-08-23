@@ -1,0 +1,2 @@
+consul_datacenter: inferno
+consul_cluster: [ 192.168.122.101, 192.168.122.102, 192.168.122.103 ]

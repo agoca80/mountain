@@ -4,7 +4,5 @@
 dependencies:
     - role: service
       service: nginx
-      enable:
-        - nginx
       packages:
         - nginx

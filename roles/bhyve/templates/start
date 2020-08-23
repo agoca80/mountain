@@ -1,8 +1,6 @@
 #!/bin/sh -x
 
-START=true
-
-while $START; do
+while ${START:-true}; do
 
 ifconfig {{ vm_interface }} create
 
@@ -32,4 +30,3 @@ ifconfig {{ vm_interface }} destroy
 bhyvectl --vm={{ vm_name }} --destroy
 
 done
-

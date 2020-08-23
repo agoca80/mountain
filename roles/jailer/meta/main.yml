@@ -4,5 +4,7 @@
 dependencies:
   - role: service
     service: jail
-    enable:
-      - jail
+    # sysctls:
+    #   security.jail.mount_fdescfs_allowed: 1
+    #   security.jail.mount_procfs_allowed: 1
+    #   security.jail.mount_devfs_allowed: 1

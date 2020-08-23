@@ -1,9 +1,12 @@
-jails_addresses: 192.168.122.100-104
+base_network:
+  ifconfig_vtnet0: inet 192.168.122.230 netmask 255.255.255.0
+  ifconfig_vtnet0_alias0: inet 192.168.122.100-119
+
+jails_base_snapshot: 0
 jails_dataset: jails
-jails_interface: vtnet0
-jails_distsite: ftp://ftp.freebsd.org/pub/FreeBSD/snapshots/amd64/13.0-CURRENT
+jails_mountpoint: /jails
+
 jails:
-  - { name: test      , state: present , ipv4: 192.168.122.100 }
   - { name: consul01  , state: present , ipv4: 192.168.122.101 }
   - { name: consul02  , state: present , ipv4: 192.168.122.102 }
   - { name: consul03  , state: present , ipv4: 192.168.122.103 }

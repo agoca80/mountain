@@ -1,0 +1,13 @@
+---
+# jenkins/tasks/main.yml
+
+- name: java required filesystems
+  mount:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    fstype: "{{ item.fstype }}"
+    opts: "{{ item.opts }}"
+    state: mounted
+  loop:
+    - { path: /dev/fd, src: fdesc, fstype: fdescfs, opts: rw }
+    - { path: /proc,   src: proc,  fstype: procfs,  opts: rw }

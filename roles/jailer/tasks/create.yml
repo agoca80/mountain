@@ -1,0 +1,30 @@
+---
+# jailer/tasks/create.yml
+
+- name: jails configuration create
+  loop_control:
+    label: "{{ item.name }}"
+  loop: "{{ create }}"
+  lineinfile:
+    line: "{{ item.name }} { ip4.addr = {{ item.ipv4 }}; }"
+    path: /etc/jail.conf
+    regexp: "^{{ item.name }}"
+    state: present
+
+- name: jails dataset create
+  loop_control:
+    label: "{{ item.name }}"
+  loop: "{{ create }}"
+  zfs:
+    name: "{{ jails_dataset }}/{{ item.name }}"
+    origin: "{{ jails_dataset }}/base@{{ jails_base_snapshot }}"
+    state: present
+
+- name: jails start
+  loop_control:
+    label: "{{ item.name }}"
+  loop: "{{ create }}"
+  service:
+    name: jail
+    state: started 
+    args: "{{ item.name }}"

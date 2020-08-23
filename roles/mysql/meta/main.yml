@@ -1,0 +1,8 @@
+---
+# mysql/meta/main.yml
+
+dependencies:
+  - role: service
+    service: mysql
+    packages:
+      - mariadb105-server

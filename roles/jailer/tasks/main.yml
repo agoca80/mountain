@@ -1,3 +1,12 @@
+---
+# jailer/tasks/main.yml
+
+- name: Amend service script
+  patch:
+    backup: yes
+    src: jail.patch
+    dest: /etc/rc.d/jail
+
 - name: Create freebsd-dist
   file:
     path: /usr/freebsd-dist
@@ -37,21 +46,11 @@
     mode: "0644"
     backup: yes
     insertbefore: BOF
-  notify: jail restart
+  register: jails_restart
+  notify: jails restart
 
-- name: jails configuration
-  loop: "{{ jails }}"
-  lineinfile:
-    line: "{{ item.name }} { ip4.addr = {{ item.ipv4 }}; }"
-    path: /etc/jail.conf
-    regexp: "^{{ item.name }}"
-    state: "{{ item.state }}"
-  notify: jail restart
+- name: Create jails
+  include_tasks: create.yml
 
-- name: jails dataset
-  loop: "{{ jails }}"
-  zfs:
-    name: "{{ jails_dataset }}/{{ item.name }}"
-    state: "{{ item.state }}"
-    origin: "{{ jails_dataset }}/base@{{ jails_base_snapshot }}"
-  notify: jail restart
+- name: Delete jails
+  include_tasks: delete.yml

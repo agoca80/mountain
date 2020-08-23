@@ -14,10 +14,5 @@
   {% endif -%}
   "skip_leave_on_interrupt": true,
   "rejoin_after_leave": true,
-  "retry_join": {{
-    consul_cluster                     |
-    map('regex_replace', '$', ':8301') |
-    list                               |
-    to_json
-  }}
+  "retry_join": {{ consul_retry_join }}
 }

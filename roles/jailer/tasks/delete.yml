@@ -1,0 +1,37 @@
+---
+# jails/tasks/delete.yml
+
+- name: jails configuration remove
+  loop_control:
+    label: "{{ item.name }}"
+  loop: "{{ delete }}"
+  lineinfile:
+    path: /etc/jail.conf
+    regexp: "^{{ item.name }}"
+    state: absent
+  register: jails_remove
+
+- name: jails stop
+  loop_control:
+    label: "{{ item.name }}"
+  loop: "{{ delete }}"
+  service:
+    name: jail
+    state: stopped 
+    args: "{{ item.name }}"
+
+- name: jails unmount
+  loop_control:
+    label: "{{ item.name }}"
+  loop: "{{ delete }}"
+  mount:
+    path: "{{ jails_mountpoint }}/{{ item.name }}/dev"
+    state: unmounted
+
+- name: jails remove
+  loop_control:
+    label: "{{ item.name }}"
+  loop: "{{ delete }}"
+  zfs:
+    name: "{{ jails_dataset }}/{{ item.name }}"
+    state: absent

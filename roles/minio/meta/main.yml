@@ -1,0 +1,7 @@
+---
+# minio/meta/main.yml
+dependencies:
+  - role: service
+    service: minio
+    packages:
+      - minio

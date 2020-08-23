@@ -2,7 +2,7 @@
 # roles/base/tasks/main.yml
 
 - name: base sysctl
-  loop: "{{ base_sysctls | dict2items }}"
+  with_dict: "{{ base_sysctls }}"
   sysctl:
     name: "{{ item.key }}"
     value: "{{ item.value }}"
@@ -12,7 +12,7 @@
   package:
     name: "{{ base_packages }}"
 
-- name: Ensure local directories exist
+- name: base local directories exist
   file:
     name: /usr/local/{{ item }}
     state: directory
@@ -20,7 +20,7 @@
     - bin
     - etc
 
-- name: hosts entries
+- name: base hosts entries
   loop:
     - "127.0.0.1 {{ ansible_hostname }}"
   lineinfile:

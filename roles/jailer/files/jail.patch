@@ -1,0 +1,21 @@
+--- jail	2020-08-28 20:50:45.418448875 +0200
++++ jail-fix	2020-08-28 20:50:34.350305018 +0200
+@@ -435,8 +435,16 @@
+ 
+ jail_status()
+ {
+-
+-	$jail_jls -N
++	case $# in
++	0)
++		$jail_jls -N
++		;;
++	*)
++		for j; do
++			$jail_jls -N | grep $j
++		done
++		;;
++	esac
+ }
+ 
+ jail_start()

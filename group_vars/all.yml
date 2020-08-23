@@ -15,4 +15,6 @@ base_packages:
 
 consul_etc_dir: /usr/local/etc/consul.d
 
+jails_distsite: ftp://ftp.freebsd.org/pub/FreeBSD/snapshots/amd64/13.0-CURRENT
+
 root_group: wheel

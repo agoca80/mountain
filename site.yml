@@ -3,19 +3,35 @@
   hosts: all
   roles: [ base ]
 
-- name: jailer
+- name: host
   hosts:
     - current
     - mountain
   roles: [ zfs, jailer ]
 
-- name: vault
-  hosts: vault
-  roles: [ vault ]
+# - name: vault
+#   hosts: vault
+#   roles: [ vault ]
   
-- name: jenkins
-  hosts: jenkins
-  roles: [ jenkins ]
+# - name: jenkins
+#   hosts: jenkins
+#   roles: [ jenkins ]
+
+# - name: devel
+#   hosts: devel
+#   roles: [ nginx ]
+
+- name: consul
+  hosts: consul11
+  roles: [ consul ]
+
+- name: mysql
+  hosts: mysql
+  roles: [ mysql ]
+
+- name: minio
+  hosts: minio
+  roles: [ minio ]
 
 # - name: monitor
 #   hosts: monitor

@@ -2,13 +2,13 @@
 # consul/tasks/main.yml
 # https://www.digitalocean.com/community/tutorial_series/getting-started-with-consul
 
-- name: create configuration exists
+- name: consul configuration directory exists
   file:
     path: "{{ consul_etc_dir }}"
     state: directory
 
-- name: configure
-  notify: consul restart
+- name: consul configuration file exists
+  notify: restart consul
   template:
     src: cluster.json.j2
     dest: "{{ consul_etc_dir}}/cluster.json"

@@ -1,5 +1,0 @@
----
-# base/meta/main.yml
-
-dependencies:
-  - role: consul

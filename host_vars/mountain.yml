@@ -1,0 +1,35 @@
+base_network:
+  autobridge_bridge0: em0
+  autobridge_interfaces: bridge0
+  cloned_interfaces: bridge0
+  ifconfig_em0: inet 192.168.1.10 netmask 255.255.255.0
+  ifconfig_em0_alias0: inet 192.168.1.18-33
+
+base_packages:
+  - bhyve-firmware
+  - git-lite
+  - py37-ansible
+  - rsync
+  - tmux
+
+base_sysctls:
+  kern.vt.enable_bell: 0
+  net.link.tap.up_on_open: 1
+
+jails_base_snapshot: 9
+jails_dataset: zatic/jails
+jails_mountpoint: /atic/jails
+
+jails:
+  - { name: devel    , state: absent , ipv4: 192.168.1.18 }
+  # - { name: test     , state: absent , ipv4: 192.168.1.19 }
+  # - { name: jenkins  , state: absent , ipv4: 192.168.1.21 }
+  # - { name: ldap     , state: absent , ipv4: 192.168.1.22 }
+  - { name: mysql    , state: present , ipv4: 192.168.1.23 }
+  - { name: redis    , state: absent , ipv4: 192.168.1.24 }
+  - { name: minio    , state: absent , ipv4: 192.168.1.25 }
+  - { name: consul11 , state: present , ipv4: 192.168.1.31 }
+  # - { name: consul12 , state: absent , ipv4: 192.168.1.32 }
+  # - { name: consul13 , state: absent , ipv4: 192.168.1.33 }
+  # - { name: vault1   , state: absent , ipv4: 192.168.1.27 }
+  # - { name: vault2   , state: absent , ipv4: 192.168.1.28 }

@@ -11,6 +11,7 @@ consul11  ansible_host=192.168.1.31
 consul12  ansible_host=192.168.1.32
 consul13  ansible_host=192.168.1.33
 jenkins   ansible_host=192.168.1.21
+minio     ansible_host=192.168.1.25
 monitor11 ansible_host=192.168.1.221
 mountain  ansible_host=192.168.1.10
 test      ansible_host=192.168.1.19
@@ -24,8 +25,11 @@ consul[11:13]
 [consul:vars]
 consul_server=true
 
-[vault]
-vault[1:2]
-
 [monitor]
 monitor11
+
+[nginx]
+devel
+
+[vault]
+vault[1:2]

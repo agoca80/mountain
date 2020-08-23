@@ -1,0 +1,7 @@
+---
+# jailer/handlers/main.yml
+
+- name: jails restart
+  service:
+    name: jail
+    state: restarted

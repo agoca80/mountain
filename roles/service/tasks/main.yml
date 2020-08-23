@@ -1,21 +1,28 @@
 ---
 # roles/service/tasks/main.yml
 
-- name: "{{ service }} : install packages"
+- name: install {{ service }} packages
   loop: "{{ packages }}"
   package:
     name: "{{ item }}"
 
-- name: "{{ service }} : enable service"
-  loop: "{{ enable }}"
+- name: enable {{ service }}
   service:
-    name: "{{ item }}"
+    name: "{{ service }}"
     enabled: yes
+  notify: restart {{ service }}
 
-- name: "{{ service }} : rc entries"
-  loop: "{{ rc | dict2items }}"
+- name: rc entries for {{ service }}
+  with_dict: "{{ rc }}"
   lineinfile:
     regexp: "^{{ item.key }}="
     path:   "/etc/rc.conf"
     line:   "{{ item.key }}=\"{{ item.value }}\""
-  notify: "{{ service }} restart"
+  notify: restart {{ service }}
+
+- name: sysctls for {{ service }}
+  with_dict: "{{ sysctls }}"
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    sysctl_set: yes

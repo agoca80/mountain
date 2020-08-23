@@ -1,0 +1,8 @@
+---
+# nginx/tasks/main.yml
+
+- name: nginx configuration
+  copy:
+    src: usr/local/etc/nginx/nginx.conf
+    dest: /usr/local/etc/nginx/nginx.conf
+  notify: service nginx restart
