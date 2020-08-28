@@ -2,6 +2,7 @@
 # vault/meta/main.yml
 
 dependencies:  
+  - role: consul
   - role: service
     service: vault
     packages:

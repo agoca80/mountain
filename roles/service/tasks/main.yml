@@ -7,9 +7,10 @@
     name: "{{ item }}"
 
 - name: enable {{ service }}
-  service:
-    name: "{{ service }}"
-    enabled: yes
+  lineinfile:
+    line: "{{ service }}_enable=\"YES\""
+    regexp: "^{{ service }}_enable="
+    path: "/etc/rc.conf"
   notify: restart {{ service }}
 
 - name: rc entries for {{ service }}

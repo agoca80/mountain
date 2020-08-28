@@ -1,0 +1,28 @@
+---
+# mysql/tasks/main.yml
+#
+# Use VAULT_TOKEN and VAULT_ADDR environment variables for password lookup
+
+- name: start service
+  service:
+    name: mysql-server
+    state: started
+
+- name: Create databases
+  loop: "{{ mysql_databases }}"
+  mysql_db:
+    login_unix_socket: /var/run/mysql/mysql.sock
+    name: "{{ item }}"
+    state: present
+
+- name: Create users with all database privileges
+  loop_control:
+    label: "{{ item.user }}"
+  loop: "{{ mysql_users }}"
+  mysql_user:
+    login_unix_socket: /var/run/mysql/mysql.sock
+    name: "{{ item.user }}"
+    host: "%"
+    password: "{{ lookup('hashi_vault', 'secret=kv/mysql/{{ item.user }}')['password'] }}"
+    priv: '{{ item.database }}.*:ALL'
+    state: present

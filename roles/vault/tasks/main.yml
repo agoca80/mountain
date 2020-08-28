@@ -7,9 +7,10 @@
     state: directory
 
 - name: configure vault
-  notify: vault restart
+  notify: restart vault
   template:
     src: vault.hcl.j2
     dest: "{{ vault_etc_dir}}/vault.hcl"
-    owner: root
-    group: "{{ root_group }}"
+    owner: vault
+    group: vault
+    mode: "0600"

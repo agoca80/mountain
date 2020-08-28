@@ -16,7 +16,7 @@ base_sysctls:
   kern.vt.enable_bell: 0
   net.link.tap.up_on_open: 1
 
-jails_base_snapshot: 9
+jails_base_snapshot: 10
 jails_dataset: zatic/jails
 jails_mountpoint: /atic/jails
 
@@ -31,5 +31,4 @@ jails:
   - { name: consul11 , state: present , ipv4: 192.168.1.31 }
   # - { name: consul12 , state: absent , ipv4: 192.168.1.32 }
   # - { name: consul13 , state: absent , ipv4: 192.168.1.33 }
-  # - { name: vault1   , state: absent , ipv4: 192.168.1.27 }
-  # - { name: vault2   , state: absent , ipv4: 192.168.1.28 }
+  - { name: vault1   , state: present , ipv4: 192.168.1.27 }
