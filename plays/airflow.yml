@@ -1,0 +1,32 @@
+---
+- name: jails
+  hosts: [ mountain ]
+  roles: [ jails ]
+  vars:
+    jails:
+      - { name: mysql    , state: present }
+      - { name: redis11  , state: present }
+      - { name: minio    , state: present }
+      - { name: consul11 , state: present }
+      - { name: vault1   , state: present }
+
+- name: consul
+  hosts: consul11
+  roles: [ consul ]
+
+- name: mysql
+  hosts: mysql
+  roles: [ mysql ]
+
+- name: minio
+  hosts: minio
+  roles: [ minio ]
+
+- name: redis
+  hosts: redis
+  roles: [ redis ]
+
+- name: vault
+  hosts: vault
+  roles: [ vault ]
+  

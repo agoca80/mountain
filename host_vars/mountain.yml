@@ -21,14 +21,11 @@ jails_dataset: zatic/jails
 jails_mountpoint: /atic/jails
 
 jails:
-  - { name: devel    , state: present }
-  # - { name: test     , state: absent }
-  # - { name: jenkins  , state: absent }
-  # - { name: ldap     , state: absent }
+  - { name: redis    , state: absent }
+  - { name: jenkins  , state: absent }
+  - { name: ldap     , state: absent }
   - { name: mysql    , state: present }
   - { name: redis11  , state: present }
-  - { name: minio    , state: absent }
+  - { name: minio    , state: present }
   - { name: consul11 , state: present }
-  # - { name: consul12 , state: absent }
-  # - { name: consul13 , state: absent }
   - { name: vault1   , state: present }
