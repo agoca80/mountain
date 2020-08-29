@@ -1,0 +1,11 @@
+---
+- name: jailer
+  hosts: [ mountain ]
+  roles: [ jails ]
+  vars:
+    jails:
+      - { name: redis11 , state: present }
+
+- name: redis
+  hosts: redis
+  roles: [ redis ]

@@ -1,0 +1,10 @@
+---
+# jails/tasks/main.yml
+
+- name: Create jails
+  when: create|length > 0
+  include_tasks: create.yml
+
+- name: Delete jails
+  when: delete|length > 0
+  include_tasks: delete.yml

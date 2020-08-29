@@ -1,12 +1,14 @@
 ---
-# jailer/tasks/create.yml
+# jails/tasks/create.yml
+#
+# jail ipv4 address must be defined in DNS
 
 - name: jails configuration create
   loop_control:
     label: "{{ item.name }}"
   loop: "{{ create }}"
   lineinfile:
-    line: "{{ item.name }} { ip4.addr = {{ item.ipv4 }}; }"
+    line: "{{ item.name }} { ip4.addr = {{ item.ipv4 | default(lookup('dig', '{{ item.name }}')) }}; }"
     path: /etc/jail.conf
     regexp: "^{{ item.name }}"
     state: present

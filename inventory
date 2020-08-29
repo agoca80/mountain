@@ -1,19 +1,23 @@
 [inferno]
-consul01  ansible_host=192.168.122.101
-consul02  ansible_host=192.168.122.102
-consul03  ansible_host=192.168.122.103
-current   ansible_host=192.168.122.230
+consul01
+consul02
+consul03
+current
 jenkins01
 
 [metropolis]
-devel     ansible_host=192.168.1.18
-consul11  ansible_host=192.168.1.31
-jenkins   ansible_host=192.168.1.21
-minio     ansible_host=192.168.1.25
-mountain  ansible_host=192.168.1.10
-test      ansible_host=192.168.1.19
-vault1    ansible_host=192.168.1.27
-mysql     ansible_host=192.168.1.23
+devel
+consul11
+jenkins
+minio
+mountain
+test
+vault1
+mysql
+redis11 
+
+[redis]
+redis11
 
 [consul]
 consul[01:03]

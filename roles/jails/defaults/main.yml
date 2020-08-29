@@ -1,0 +1,16 @@
+---
+# jailer/defaults/main.yml
+
+jails_base_snapshot: 0
+
+create: "{{
+    jails
+    | selectattr('state', 'match', 'present')
+    | list
+  }}"
+
+delete: "{{
+    jails
+    | selectattr('state', 'match', 'absent')
+    | list
+  }}"

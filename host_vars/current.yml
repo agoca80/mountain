@@ -7,10 +7,10 @@ jails_dataset: jails
 jails_mountpoint: /jails
 
 jails:
-  - { name: consul01  , state: present , ipv4: 192.168.122.101 }
-  - { name: consul02  , state: present , ipv4: 192.168.122.102 }
-  - { name: consul03  , state: present , ipv4: 192.168.122.103 }
-  - { name: jenkins01 , state: present , ipv4: 192.168.122.104 }
+  - { name: consul01  , state: present }
+  - { name: consul02  , state: present }
+  - { name: consul03  , state: present }
+  - { name: jenkins01 , state: present }
 
 zfs_pools:
   - name: jails

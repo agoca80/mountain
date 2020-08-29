@@ -1,0 +1,8 @@
+---
+# redis/meta/main.yml
+
+dependencies:
+  - role: service
+    service: redis
+    packages:
+      - redis

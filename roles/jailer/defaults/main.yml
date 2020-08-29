@@ -14,15 +14,3 @@ jails_conf: |
   
   path          = "/{{ jails_mountpoint }}/$name";
   host.hostname = "$name";
-
-create: "{{
-    jails
-    | selectattr('state', 'match', 'present')
-    | list
-  }}"
-
-delete: "{{
-    jails
-    | selectattr('state', 'match', 'absent')
-    | list
-  }}"

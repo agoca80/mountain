@@ -21,14 +21,14 @@ jails_dataset: zatic/jails
 jails_mountpoint: /atic/jails
 
 jails:
-  - { name: devel    , state: absent , ipv4: 192.168.1.18 }
-  # - { name: test     , state: absent , ipv4: 192.168.1.19 }
-  # - { name: jenkins  , state: absent , ipv4: 192.168.1.21 }
-  # - { name: ldap     , state: absent , ipv4: 192.168.1.22 }
-  - { name: mysql    , state: present , ipv4: 192.168.1.23 }
-  - { name: redis    , state: absent , ipv4: 192.168.1.24 }
-  - { name: minio    , state: absent , ipv4: 192.168.1.25 }
-  - { name: consul11 , state: present , ipv4: 192.168.1.31 }
-  # - { name: consul12 , state: absent , ipv4: 192.168.1.32 }
-  # - { name: consul13 , state: absent , ipv4: 192.168.1.33 }
-  - { name: vault1   , state: present , ipv4: 192.168.1.27 }
+  - { name: devel    , state: present }
+  # - { name: test     , state: absent }
+  # - { name: jenkins  , state: absent }
+  # - { name: ldap     , state: absent }
+  - { name: mysql    , state: present }
+  - { name: redis11  , state: present }
+  - { name: minio    , state: absent }
+  - { name: consul11 , state: present }
+  # - { name: consul12 , state: absent }
+  # - { name: consul13 , state: absent }
+  - { name: vault1   , state: present }
