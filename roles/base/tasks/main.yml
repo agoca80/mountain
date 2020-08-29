@@ -11,14 +11,7 @@
 - name: base packages
   package:
     name: "{{ base_packages }}"
-
-- name: base local directories exist
-  file:
-    name: /usr/local/{{ item }}
-    state: directory
-  loop:
-    - bin
-    - etc
+    state: present
 
 - name: base hosts entries
   loop:
@@ -28,7 +21,7 @@
     path: /etc/hosts
 
 - name: base network
-  loop: "{{ base_network | dict2items }}"
+  with_dict: "{{ base_network }}"
   lineinfile:
     backup: yes
     regexp: "^{{ item.key }}="

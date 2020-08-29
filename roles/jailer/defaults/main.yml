@@ -1,9 +1,9 @@
 ---
 # jailer/defaults/main.yml
 
-jails_base_snapshot: 0
+jailer_base_snapshot: 0
 
-jails_conf: |
+jailer_conf: |
   allow.raw_sockets;
   
   exec.start = "/bin/sh /etc/rc";
@@ -12,5 +12,5 @@ jails_conf: |
   
   mount.devfs;
   
-  path          = "/{{ jails_mountpoint }}/$name";
+  path          = "/{{ jailer_mountpoint }}/$name";
   host.hostname = "$name";

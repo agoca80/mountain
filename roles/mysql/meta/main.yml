@@ -6,4 +6,3 @@ dependencies:
     service: mysql
     packages:
       - mariadb105-server
-      - py37-pymysql-0.10.0

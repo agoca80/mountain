@@ -1,11 +1,7 @@
 ---
-# roles/base/vars/main.yml
-
-base_exports: [ ]
+# roles/base/defaults/main.yml
 
 base_packages: [ ]
-
-base_mounts: [ ]
 
 base_network: { }
 

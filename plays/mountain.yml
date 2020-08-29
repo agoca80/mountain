@@ -1,0 +1,6 @@
+---
+# plays/mountain.yml
+
+- name: mountain
+  hosts: mountain
+  roles: [ base, jailer ]

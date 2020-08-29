@@ -15,7 +15,7 @@
 - name: Get base distribution
   command: bsdinstall distfetch
   environment:
-    BSDINSTALL_DISTSITE: "{{ jails_distsite }}"
+    BSDINSTALL_DISTSITE: "{{ jailer_distsite }}"
     BSDINSTALL_DISTDIR: /usr/freebsd-dist
     DISTRIBUTIONS: base.txz
   args:
@@ -23,34 +23,26 @@
 
 - name: Create base jail dataset
   zfs:
-    name: "{{ jails_dataset }}/base"
+    name: "{{ jailer_dataset }}/base"
     state: present
 
 - name: Extract base distribution
-  command: tar xf /usr/freebsd-dist/base.txz -C {{ jails_mountpoint }}/base
+  command: tar xf /usr/freebsd-dist/base.txz -C {{ jailer_mountpoint }}/base
   args:
-    creates: "{{ jails_mountpoint }}/base/COPYRIGHT"
+    creates: "{{ jailer_mountpoint }}/base/COPYRIGHT"
 
 - name: Snapshot base jail
   zfs:
-    name: "{{ jails_dataset }}/base@{{ jails_base_snapshot }}"
+    name: "{{ jailer_dataset }}/base@{{ jailer_base_snapshot }}"
     state: present
 
-- name: Create jail configuration file
+- name: jails configuration
   blockinfile:
     path: /etc/jail.conf
-    block: "{{ jails_conf }}"
+    block: "{{ jailer_conf }}"
     create: yes
     owner: root
     group: wheel
     mode: "0644"
     backup: yes
     insertbefore: BOF
-  register: jails_restart
-  notify: jails restart
-
-- name: Create jails
-  include_tasks: create.yml
-
-- name: Delete jails
-  include_tasks: delete.yml

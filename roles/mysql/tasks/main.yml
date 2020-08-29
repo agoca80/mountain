@@ -1,12 +1,16 @@
 ---
 # mysql/tasks/main.yml
-#
-# Use VAULT_TOKEN and VAULT_ADDR environment variables for password lookup
 
 - name: start service
   service:
     name: mysql-server
     state: started
+
+# This is required by mysql_db and mysql_user
+- name: ansible dependencies
+  package:
+    name: py37-pymysql-0.10.0
+    state: present
 
 - name: Create databases
   loop: "{{ mysql_databases }}"

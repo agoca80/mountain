@@ -1,7 +1,8 @@
 base_network:
-  autobridge_bridge0: em0
+  autobridge_bridge0: tap?
   autobridge_interfaces: bridge0
   cloned_interfaces: bridge0
+  ifconfig_bridge0: addm em0
   ifconfig_em0: inet 192.168.1.10 netmask 255.255.255.0
   ifconfig_em0_alias0: inet 192.168.1.18-33
 
@@ -16,16 +17,7 @@ base_sysctls:
   kern.vt.enable_bell: 0
   net.link.tap.up_on_open: 1
 
-jails_base_snapshot: 10
-jails_dataset: zatic/jails
-jails_mountpoint: /atic/jails
-
-jails:
-  - { name: redis    , state: absent }
-  - { name: jenkins  , state: absent }
-  - { name: ldap     , state: absent }
-  - { name: mysql    , state: present }
-  - { name: redis11  , state: present }
-  - { name: minio    , state: present }
-  - { name: consul11 , state: present }
-  - { name: vault1   , state: present }
+jailer_base_snapshot: 1
+jailer_dataset: zatic/jails
+jailer_distsite: ftp://ftp.freebsd.org/pub/FreeBSD/releases/amd64/12.1-RELEASE
+jailer_mountpoint: /atic/jails
