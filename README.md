@@ -2,9 +2,15 @@
 
 By default, ansible will look for the ansible.cfg file in the current working directory. Ansible will use the SSH client configuration to connect to the inventory hosts.
 
-# Bootstrap
+# Environment
 
-## FreeBSD
+```
+export ANSIBLE_ROLES_PATH="..."
+export VAULT_ADDR="..."
+export VAULT_TOKEN="..."
+```
+
+# Bootstrap
 
 ```
 pkg install python3 sudo
@@ -16,14 +22,14 @@ ssh-copy-id $HOST
 
 ```
 ansible all -m setup
-ansible all -m ping
-ansible all -m command -a uptime
+ansible current -m ping
+ansible current -m command -a uptime
 
 # Module command is so frequent the it is the default module
-ansible all -a uptime
 ansible all -a date
 
-ansible current-dev -m ping
-
-ansible-playbook -l consul1? site.yml
+ansible-playbook -l current site.yml
+ansible-playbook plays/airflow.yml
+ansible-playbook plays/mountain.yml
 ```
+
