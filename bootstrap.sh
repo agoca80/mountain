@@ -7,8 +7,8 @@ packages='python3 sudo'
 freebsd () {
     export ASSUME_ALWAYS_YES="yes"
 
-    echo "$password" | pw mod user root -H 0 
-    echo "$password" | pw add useradmin -H 0 -mn -G wheel
+    echo "$password" | pw mod user root  -H 0 
+    echo "$password" | pw add user admin -H 0 -mn -G wheel
     pkg bootstrap 
     pkg install $packages
 }
