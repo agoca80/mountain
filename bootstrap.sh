@@ -14,8 +14,6 @@ freebsd () {
     pkg install $packages
 }
 
-bootstrap=freebsd
-
 clear
 
 set -ex
