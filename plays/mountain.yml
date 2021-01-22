@@ -1,0 +1,9 @@
+---
+# plays/mountain.yml
+
+- name: mountain
+  hosts: mountain
+  roles:
+    - zfs
+    - rsync
+    - jenkins

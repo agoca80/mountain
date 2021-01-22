@@ -1,0 +1,6 @@
+---
+# roles/monitor/playbook.yml
+
+- name: monitor
+  hosts: all
+  roles: [ monitor ]

@@ -1,0 +1,6 @@
+---
+# jail/defaults/main.yml
+
+jail_action: create
+jail_base_snapshot: snap
+jail_state: present

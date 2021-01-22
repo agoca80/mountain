@@ -1,0 +1,35 @@
+---
+# jails/tasks/create.yml
+#
+# jail ipv4 address must be defined in DNS
+
+- name: jail configuration
+  lineinfile:
+    line: "{{ jail_name }} { ip4.addr = {{ jail_ip }}; }"
+    path: /etc/jail.conf
+    regexp: "^{{ jail_name }}"
+    state: present
+
+- name: jail dataset
+  zfs:
+    name: "{{ jailer_dataset }}/{{ jail_name }}"
+    origin: "{{ jailer_dataset }}/base@{{jailer_base_snapshot }}"
+    state: present
+
+- name: jail hosts file
+  lineinfile:
+    create: yes
+    line: "{{ jail_ip }} {{ jail_name }}"
+    path: "{{ jailer_mountpoint }}/{{ jail_name }}/etc/hosts"
+
+- name: jail motd file
+  template:
+    src: motd
+    dest: "{{ jailer_mountpoint }}/{{ jail_name }}/etc/motd"
+    mode: "0644"
+
+- name: jail start
+  service:
+    name: jail
+    state: started
+    args: "{{ jail_name }}"

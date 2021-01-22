@@ -1,0 +1,8 @@
+---
+# nginx/meta/main.yml
+
+dependencies:
+    - role: service
+      service: nginx
+      packages:
+        - nginx

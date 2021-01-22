@@ -1,0 +1,13 @@
+---
+- name: set timezone
+  copy: 
+    dest: /etc/timezone
+    content: Europe/Madrid
+    owner: root
+    group: root
+    mode: "0644"
+  notify: configure timezone
+
+- name: set hostname
+  hostname:
+    name: "{{ ansible_hostname }}"

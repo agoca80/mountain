@@ -1,0 +1,6 @@
+---
+# host_vars/mysql11.yml
+
+mysql_databases: [ airflow ]
+mysql_users:
+  - { user: airflow, database: airflow }

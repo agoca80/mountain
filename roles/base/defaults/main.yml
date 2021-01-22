@@ -1,0 +1,6 @@
+---
+# roles/base/defaults/main.yml
+
+jailer_base_snapshot: 0
+
+base_jail: "{{ jailer_mountpoint }}/base"

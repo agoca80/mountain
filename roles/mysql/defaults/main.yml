@@ -1,0 +1,5 @@
+---
+# roles/mysql/default/main.yml
+
+mysql_databases: [  ]
+mysql_users: [ ]

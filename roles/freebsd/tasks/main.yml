@@ -1,0 +1,8 @@
+---
+# freebsd/tasks/main.yml
+
+- name: install {{ service }} packages
+  package:
+    name: "{{ item }}"
+  loop:
+    - xauth

@@ -1,0 +1,33 @@
+---
+# roles/jailer/tasks/main.yml
+
+- name: jailer amend service script
+  patch:
+    backup: yes
+    src: jail.patch
+    dest: /etc/rc.d/jail
+
+- name: jailer create freebsd-dist
+  file:
+    path: /usr/freebsd-dist
+    state: directory
+
+- name: jailer fetch freebsd-dist
+  command: bsdinstall distfetch
+  environment:
+    BSDINSTALL_DISTSITE: "{{ jailer_distsite }}"
+    BSDINSTALL_DISTDIR: /usr/freebsd-dist
+    DISTRIBUTIONS: base.txz
+  args:
+    creates: /usr/freebsd-dist/base.txz
+
+- name: jailer configuration
+  blockinfile:
+    path: /etc/jail.conf
+    block: "{{ jailer_conf }}"
+    create: yes
+    owner: root
+    group: wheel
+    mode: "0644"
+    backup: yes
+    insertbefore: BOF

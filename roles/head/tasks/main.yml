@@ -1,0 +1,32 @@
+---
+# current/tasks/main.yml
+
+- name: Configure malloc
+  file:
+    dest: /etc/malloc.conf
+    src: abort:false,junk:false
+    force: yes
+    state: link
+    follow: false
+
+- name: Checkout sources
+  command: svnlite co https://svn.freebsd.org/base/head /usr/src
+  args:
+    creates: /usr/src/UPDATING
+
+- name: Update sources
+  cron:
+    name: Update sources
+    job: svnlite up /usr/src
+    minute: "0"
+    state: absent
+  
+- name: Copy build configuration files
+  copy:
+    src: etc/
+    dest: /etc
+    mode: "0644"
+  # loop:
+  #   - make.conf
+  #   - src.conf
+  #   - src-env.conf

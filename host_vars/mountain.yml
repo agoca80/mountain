@@ -1,0 +1,29 @@
+base_network:
+  # autobridge_bridge0: tap?
+  # autobridge_interfaces: bridge0
+  # cloned_interfaces: bridge0
+  # ifconfig_bridge0: addm em0
+  ifconfig_em0: inet 192.168.1.10 netmask 255.255.255.0
+  ifconfig_em0_alias0: inet 192.168.1.40-49
+
+base_packages:
+  - bhyve-firmware
+  - gtar
+  - tmux
+
+base_sysctls:
+  kern.vt.enable_bell: 0
+  # net.link.tap.up_on_open: 1
+
+jailer_base_snapshot: 1
+jailer_dataset: zdata/jails
+jailer_distsite: ftp://ftp.freebsd.org/pub/FreeBSD/snapshots/amd64/13.0-CURRENT
+jailer_mountpoint: /jails
+
+zfs_pools:
+  - device: /dev/da0
+    mountpoint: /atic
+    name: zatic
+  - device: /dev/ada0
+    mountpoint: /data
+    name: zdata

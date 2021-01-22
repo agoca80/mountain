@@ -1,0 +1,10 @@
+#!/bin/sh
+
+MACHINE=$1
+PLAYBOOK=$2
+shift 2
+
+OPTIONS=$(echo $* | sed "s/[^ ]* */-e ${PLAYBOOK}_&/g")
+
+set -x
+ansible-playbook -l $MACHINE $OPTIONS roles/$PLAYBOOK/playbook.yml

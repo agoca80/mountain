@@ -1,0 +1,9 @@
+---
+# minio/tasks/main.yml
+
+- name: minio db directory exists
+  file:
+    path: /var/db/minio
+    state: directory
+    owner: minio
+    mode: "0700"

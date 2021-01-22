@@ -1,0 +1,4 @@
+---
+# vault/defaults/main.yml
+
+vault_etc_dir: "/usr/local/etc"

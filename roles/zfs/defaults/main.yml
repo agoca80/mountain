@@ -1,0 +1,5 @@
+---
+# roles/zfs/defaults/main.yml
+
+zfs_datasets: [ ]
+zfs_pools: [ ]

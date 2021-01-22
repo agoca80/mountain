@@ -1,0 +1,14 @@
+---
+# roles/consul/defaults/main.yml
+
+consul_address: "{{ lookup('dig', '{{ ansible_host }}' ) }}"
+consul_data_dir: "/var/db/consul"
+consul_keygen: "{{ lookup('env', 'consul_keygen') }}"
+consul_node_name: "{{ inventory_hostname }}"
+consul_retry_join: "{{ consul_cluster
+  | map('regex_replace', '$', ':8301')
+  | list
+  | to_json
+}}"
+
+consul_server: "false"

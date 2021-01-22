@@ -1,0 +1,6 @@
+---
+# roles/base/meta/main.yml
+
+dependencies:
+  - role: service
+    service: jailer

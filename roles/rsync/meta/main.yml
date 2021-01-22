@@ -1,0 +1,15 @@
+---
+# redis/meta/main.yml
+
+dependencies:
+  - role: zfs
+    zfs_datasets:
+      - dataset: zdata/backups
+        state: present
+        extra_zfs_properties:
+          mountpoint: /backups
+          
+  - role: service
+    service: rsyncd
+    packages:
+      - rsync

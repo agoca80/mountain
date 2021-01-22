@@ -1,0 +1,13 @@
+---
+# monitor/meta/main.yml
+
+dependencies:
+  - role: service
+    service: prometheus
+    packages:
+      - prometheus
+
+  - role: service
+    service: grafana
+    packages:
+      - grafana6

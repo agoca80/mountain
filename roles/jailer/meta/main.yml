@@ -1,0 +1,23 @@
+---
+# roles/jailer/meta/main.yml
+
+dependencies:
+
+  - role: zfs
+    zfs_datasets:
+
+      - dataset: "{{ jailer_dataset }}"
+        state: present
+        extra_zfs_properties:
+          mountpoint: "{{ jailer_mountpoint }}"
+
+      - dataset: "{{ jailer_dataset }}/base"
+        state: present
+        extra_zfs_properties: { }
+
+  - role: service
+    service: jail
+    packages:
+      - gtar
+
+  - role: base

@@ -1,0 +1,7 @@
+---
+# plays/mountain.yml
+
+- name: "{{ role }}"
+  hosts: "{{ host }}"
+  roles:
+  - "{{ role }}"

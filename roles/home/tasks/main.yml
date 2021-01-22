@@ -1,0 +1,13 @@
+---
+# home/tasks/main.yml
+
+- name: /etc/hosts entries
+  blockinfile:
+    path: /etc/hosts
+    block: "{{ hosts }}"
+    create: yes
+    owner: root
+    group: wheel
+    mode: "0664"
+    backup: yes
+    insertbefore: BOF

@@ -1,0 +1,4 @@
+---
+# jails/tasks/main.yml
+
+- include_tasks: "{{ jail_action }}.yml"

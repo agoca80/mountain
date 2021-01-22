@@ -1,0 +1,10 @@
+---
+# mysql/meta/main.yml
+
+dependencies:
+  - role: service
+    service: mysql
+    packages:
+      - mysql80-server
+    scripts:
+      - mysql-server

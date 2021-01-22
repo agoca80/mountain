@@ -1,0 +1,24 @@
+---
+# jails/tasks/delete.yml
+
+- name: jails configuration remove
+  lineinfile:
+    path: /etc/jail.conf
+    regexp: "^{{ jail_name }}"
+    state: absent
+
+- name: jails stop
+  service:
+    name: jail
+    state: stopped 
+    args: "{{ jail_name }}"
+
+- name: jails unmount
+  mount:
+    path: "{{ jailer_mountpoint }}/{{ jail_name }}/dev"
+    state: unmounted
+
+- name: jails remove
+  zfs:
+    name: "{{ jailer_dataset }}/{{ jail_name }}"
+    state: absent

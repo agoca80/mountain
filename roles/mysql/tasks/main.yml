@@ -1,0 +1,50 @@
+---
+# mysql/tasks/main.yml
+
+# - name: mysql socket is created
+#   command: mkfifo /var/run/mysql/mysql.sock
+#   args:
+#     creates: /var/run/mysql/mysql.sock
+
+# - name: mysql socket permissions
+#   file:
+#     dest: /var/run/mysql/mysql.sock
+#     owner: mysql
+#     mode: "0600"
+
+# - name: start service
+#   service:
+#     name: mysql-server
+#     state: started
+
+# BEGIN These is required by mysql_db and mysql_user
+
+- name: ansible dependencies
+  package:
+    name: py37-pymysql
+    state: present
+
+- name: mysql client config
+  template:
+    src: my.cnf
+    dest: /root/.my.cnf
+    mode: "0644"
+
+# END
+
+- name: Create databases
+  loop: "{{ mysql_databases }}"
+  mysql_db:
+    login_unix_socket: /var/run/mysql/mysql.sock
+    name: "{{ item }}"
+    state: present
+
+# - name: Create users with all database privileges
+#   loop: "{{ mysql_users }}"
+#   mysql_user:
+#     login_unix_socket: /var/run/mysql/mysql.sock
+#     name: "{{ item.user }}"
+#     host: "%"
+#     password: "{{ lookup('hashi_vault', 'secret=kv/{{ ansible_host }}/{{ item.user }}')['password'] }}"
+#     priv: '{{ item.database }}.*:ALL'
+#     state: present

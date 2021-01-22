@@ -1,0 +1,29 @@
+dn: {{ ldap_base }}
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: {{ ldap_organization }}
+dc: {{ ldap_organization }}
+description: {{ ldap_organization }}
+
+dn: ou=users,{{ ldap_base }}
+objectClass: organizationalUnit
+ou: users
+
+dn: ou=groups,{{ ldap_base }}
+objectClass: organizationalUnit
+ou: groups
+
+# EXAMPLE
+#
+# dn: uid=example,ou=users,{{ ldap_base }}
+# objectClass: person
+# objectClass: posixAccount
+# objectClass: shadowAccount
+# uidNumber: 10000
+# gidNumber: 10000
+# homeDirectory: /home/example
+# loginShell: /bin/sh
+# uid: example
+# cn: example
+# sn: example

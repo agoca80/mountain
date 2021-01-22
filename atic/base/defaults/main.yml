@@ -1,0 +1,10 @@
+---
+# roles/base/defaults/main.yml
+
+base_packages: [ ]
+
+base_network: { }
+
+base_services: [ ]
+
+base_sysctls: { }

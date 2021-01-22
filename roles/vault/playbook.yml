@@ -1,0 +1,11 @@
+---
+- hosts: mountain
+  roles: [ jails ]
+  vars:
+    jails: [ consul11, vault11 ]
+
+- hosts: consul11
+  roles: [ consul ]
+
+- hosts: vault11
+  roles: [ vault ]

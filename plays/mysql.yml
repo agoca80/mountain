@@ -1,0 +1,6 @@
+---
+# plays/mysql.yml
+
+- name: mysql
+  hosts: mysql11
+  roles: [ mysql ]

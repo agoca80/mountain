@@ -1,0 +1,14 @@
+---
+# plays/airflow.yml
+#
+# Depends on vault playbook
+
+- name: jails
+  hosts: [ mountain ]
+  roles: [ jails ]
+  vars:
+    jails:
+      - ldap11
+      - redis11
+      - minio11
+      - mysql11

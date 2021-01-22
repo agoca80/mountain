@@ -1,0 +1,23 @@
+[server]
+
+[server-mariadb]
+
+[mysqld]
+user             = mysql
+bind-address     = {{ lookup('dig', '{{ ansible_host }}') }}
+basedir          = /usr/local
+datadir          = /var/db/mysql
+net_retry_count  = 16384
+log_error        = /var/log/mysql/mysqld.err
+
+[mariadb_safe]
+
+[mariabackup]
+
+[mariadb-upgrade]
+
+[sst]
+
+[mariadb-binlog]
+
+[mariadb-admin]

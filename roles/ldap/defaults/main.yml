@@ -1,0 +1,6 @@
+---
+# roles/ldap/defaults/main.yml
+
+ldap_etc_dir: usr/local/etc/openldap
+ldap_base: dc=ldap
+ldap_fqdn: ldap

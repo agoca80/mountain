@@ -1,0 +1,32 @@
+#!/bin/sh -x
+
+while ${START:-true}; do
+
+ifconfig {{ vm_interface }} create
+
+{
+        sleep 5
+        ifconfig {{ vm_default_bridge }} addm {{ vm_interface }}
+} &
+
+bhyve -A -H -P \
+    -s 0:0,hostbridge \
+    -s 1:0,lpc \
+    -s 2:0,virtio-net,{{ vm_interface }} \
+    -s 3:0,virtio-blk,{{ vm_root_device }} \
+    -s 4:0,virtio-blk,{{ vm_swap_device }} \
+    -l bootrom,{{ vm_bootroom }} \
+    -l com1,{{ vm_console }} \
+    -c {{ vm_cpus }} -m {{ vm_memory }} \
+    {{ vm_name }}
+
+case $? in
+0) START=true;;
+*) START=false;;
+esac
+
+ifconfig {{ vm_interface }} destroy
+
+bhyvectl --vm={{ vm_name }} --destroy
+
+done

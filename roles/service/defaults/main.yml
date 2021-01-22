@@ -1,0 +1,11 @@
+---
+# service/defaults/main.yml
+
+packages: [ ]
+
+rc: { }
+
+sysctls: { }
+
+scripts:
+  - "{{ service }}"

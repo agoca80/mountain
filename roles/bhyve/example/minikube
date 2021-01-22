@@ -1,0 +1,34 @@
+#!/bin/sh -x
+
+START=true
+
+while $START; do
+
+ifconfig tap0 create
+
+{
+        sleep 5
+        ifconfig bridge0 addm tap0
+} &
+
+bhyve -A -H -P \
+        -s 0:0,hostbridge \
+        -s 1:0,lpc \
+        -s 2:0,virtio-net,tap0 \
+        -s 3:0,virtio-blk,/dev/zvol/zatic/minikube/disk-root \
+        -s 4:0,virtio-blk,/dev/zvol/zatic/minikube/disk-swap \
+        -l bootrom,/usr/local/share/uefi-firmware/BHYVE_UEFI.fd \
+        -l com1,/dev/nmdm0A \
+        -c 4 -m 8G \
+        minikube
+
+case $? in
+0) START=true;;
+*) START=false;;
+esac
+
+ifconfig tap0 destroy
+
+bhyvectl --vm=minikube --destroy
+
+done

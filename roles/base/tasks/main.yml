@@ -1,0 +1,66 @@
+---
+# roles/base/tasks/main.yml
+
+- name: base create dataset
+  zfs:
+    name: "{{ jailer_dataset }}/base"
+    state: present
+    extra_zfs_properties:
+      mountpoint: /jails/base
+
+- name: base distribution extract
+  unarchive:
+    creates: "{{ base_jail }}/COPYRIGHT"
+    dest: "{{ base_jail }}"
+    remote_src: true
+    src: /usr/freebsd-dist/base.txz
+
+- name: base rc configuration
+  copy:
+    src: rc.conf
+    dest: "{{ base_jail }}/etc/rc.conf"
+    mode: "0644"
+
+- name: base DNS resolution
+  copy:
+    src: /etc/resolv.conf
+    dest: "{{ base_jail }}/etc/"
+    mode: preserve
+    remote_src: yes
+
+- name: base admin exists
+  command: chroot {{ base_jail }} id admin
+  failed_when: false
+  changed_when: false
+  register: user
+
+- name: base admin user creation
+  command: chroot {{ base_jail }} pw user add -mn admin -G wheel
+
+- name: base authorized_keys
+  copy:
+    src: /home/admin/.ssh
+    dest: "{{ base_jail }}/home/admin/"
+    mode: preserve
+    remote_src: yes
+
+- name: base admin SSH permissions
+  command: chroot {{ base_jail }} chown -R admin /home/admin
+
+- name: base packages
+  command: chroot {{ base_jail }} pkg install -y sudo python3
+  environment:
+    IGNORE_OSVERSION: yes
+
+- name: base sudo
+  copy:
+    dest: "{{ base_jail }}/usr/local/etc/sudoers"
+    mode: "0640"
+    content: |
+      root ALL=(ALL) ALL
+      %wheel ALL=(ALL) NOPASSWD: ALL
+
+- name: base snaphot
+  zfs:
+    name: "{{ jailer_dataset }}/base@{{ jailer_base_snapshot }}"
+    state: present

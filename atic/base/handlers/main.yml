@@ -1,0 +1,15 @@
+---
+# base/handlers/main.yml
+
+- name: sysctl set
+  service:
+    name: sysctl
+    state: restarted
+
+- name: restart network
+  service:
+    name: "{{ item }}"
+    state: restarted
+  loop:
+    - netif
+    - routing

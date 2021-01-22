@@ -1,0 +1,12 @@
+---
+
+dependencies:
+  - role: service
+    service: jenkins
+    packages:
+      - docker
+      - helm
+      - jenkins
+      - git-lite
+      - kubectl
+      - py37-ansible

@@ -1,0 +1,8 @@
+---
+# roles/base/playbook.yml
+
+- name: base
+  hosts: jailer
+  roles:
+    - role: base
+      when: ansible_distribution == "FreeBSD"

@@ -1,0 +1,17 @@
+base_network:
+  ifconfig_vtnet0: inet 192.168.122.230 netmask 255.255.255.0
+  ifconfig_vtnet0_alias0: inet 192.168.122.100-119
+
+jails_base_snapshot: 0
+jails_dataset: jails
+jails_mountpoint: /jails
+
+jails:
+  - { name: consul01  , state: present }
+  - { name: consul02  , state: present }
+  - { name: consul03  , state: present }
+  - { name: jenkins01 , state: present }
+
+zfs_pools:
+  - name: jails
+    device: /dev/vtbd1
