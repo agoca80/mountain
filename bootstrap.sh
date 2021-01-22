@@ -15,6 +15,8 @@ freebsd () {
 
 bootstrap=freebsd
 
+clear
+
 set -ex
 
 $bootstrap
