@@ -1,8 +1,0 @@
----
-# service/handlers/main.yml
-
-- name: restart {{ service }}
-  loop: "{{ scripts }}"
-  service:
-    name: "{{ item }}"
-    state: restarted

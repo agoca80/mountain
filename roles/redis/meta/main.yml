@@ -2,7 +2,7 @@
 # redis/meta/main.yml
 
 dependencies:
-  - role: service
-    service: redis
+  - role: freebsd
+    freebsd_service: redis
     packages:
       - redis

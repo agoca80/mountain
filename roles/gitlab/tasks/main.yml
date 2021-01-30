@@ -1,0 +1,24 @@
+---
+# roles/gitlab/tasks/main.yml
+
+- include_tasks: "postgresql.yml"
+
+- name: gitlab add git user to redis group
+  user:
+    name: git
+    groups: redis
+    append: yes
+
+- name: gitlab config
+  template:
+    src: "{{ item.file }}"
+    dest: /usr/local/www/gitlab-ce/config/
+    owner: git
+    group: www
+    mode: "{{ item.mode }}"
+  notify: restart gitlab
+  loop:
+    - { mode: "0644", file: gitlab.yml }
+    - { mode: "0600", file: secrets.yml }
+    - { mode: "0644", file: puma.rb }
+

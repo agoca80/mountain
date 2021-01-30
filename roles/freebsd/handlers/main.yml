@@ -1,7 +1,7 @@
 ---
 # freebsd/handlers/main.yml
 
-- name: sysctl set
+- name: restart sysctl
   service:
     name: sysctl
     state: restarted
@@ -13,3 +13,8 @@
   loop:
     - netif
     - routing
+
+- name: "restart {{ freebsd_service }}"
+  service:
+    name: "{{ freebsd_service }}"
+    state: restarted

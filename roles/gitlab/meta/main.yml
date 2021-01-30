@@ -1,0 +1,14 @@
+---
+# roles/gitlab/meta/main.yml
+
+dependencies:
+  - role: redis
+
+  - role: freebsd
+    freebsd_packages:
+      - gitlab-ce
+      - postgresql12-contrib
+      - postgresql12-server
+      - py37-psycopg2
+
+    freebsd_service: gitlab

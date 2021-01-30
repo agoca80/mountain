@@ -1,0 +1,7 @@
+---
+# roles/gitlab/handlers/main.yml
+
+- name: gitlab postgresql started
+  service:
+    name: postgresql
+    state: restarted

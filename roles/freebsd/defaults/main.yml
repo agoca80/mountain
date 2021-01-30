@@ -5,6 +5,8 @@ freebsd_packages: [ ]
 
 freebsd_network: { }
 
-freebsd_services: [ ]
+freebsd_rc: { }
+
+freebsd_service: [ ]
 
 freebsd_sysctls: { }
