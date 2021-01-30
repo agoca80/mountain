@@ -1,16 +1,11 @@
 ---
 # vault/tasks/main.yml
 
-- name: ensure {{ vault_etc_dir }} exists
-  file:
-    path: "{{ vault_etc_dir }}"
-    state: directory
-
 - name: configure vault
   notify: restart vault
   template:
     src: vault.hcl.j2
-    dest: "{{ vault_etc_dir}}/vault.hcl"
+    dest: /usr/local/etc/vault.hcl
     owner: vault
     group: vault
     mode: "0600"

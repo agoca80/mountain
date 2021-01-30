@@ -1,10 +1,10 @@
 ---
 dependencies:
-  - role: service
-    service: consul
-    packages:
+  - role: freebsd
+    freebsd_service: consul
+    freebsd_packages:
       - consul
-    rc:
+    freebsd_rc:
       consul_syslog_output_enable: "YES"
       consul_user: consul
       consul_group: consul

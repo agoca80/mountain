@@ -3,11 +3,11 @@
 
 dependencies:  
   - role: consul
-  - role: service
-    service: vault
-    packages:
+  - role: freebsd
+    freebsd_service: vault
+    freebsd_packages:
       - vault
-    rc:
+    freebsd_rc:
       vault_syslog_output_enable: "YES"
       vault_user: vault
       vault_group: vault

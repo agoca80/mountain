@@ -4,14 +4,14 @@
 
 - name: consul configuration directory exists
   file:
-    path: "{{ consul_etc_dir }}"
+    path: /usr/local/etc/consul.d
     state: directory
 
 - name: consul configuration file exists
   notify: restart consul
   template:
     src: cluster.json.j2
-    dest: "{{ consul_etc_dir}}/cluster.json"
+    dest: /usr/local/etc/consul.d/cluster.json
     owner: consul
     group: consul
     mode: "0600"

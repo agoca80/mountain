@@ -1,7 +1,7 @@
 ---
 # roles/consul/defaults/main.yml
 
-consul_address: "{{ lookup('dig', '{{ ansible_host }}' ) }}"
+consul_address: "{{ ansible_host }}"
 consul_data_dir: "/var/db/consul"
 consul_keygen: "{{ lookup('env', 'consul_keygen') }}"
 consul_node_name: "{{ inventory_hostname }}"
