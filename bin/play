@@ -1,10 +1,17 @@
 #!/bin/sh
 
 MACHINE=$1
-PLAYBOOK=$2
+ROLE=$2
 shift 2
 
-OPTIONS=$(echo $* | sed "s/[^ ]* */-e ${PLAYBOOK}_&/g")
+OPTIONS=""
+for OPTION in $*; do
+    OPTIONS="$OPTIONS -e ${ROLE}_$OPTION"
+done
 
 set -x
-ansible-playbook -l $MACHINE $OPTIONS roles/$PLAYBOOK/playbook.yml
+ansible-playbook \
+    -e host=$MACHINE \
+    -e role=$ROLE \
+    $OPTIONS \
+    plays/role.yml

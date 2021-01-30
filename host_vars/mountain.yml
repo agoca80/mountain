@@ -1,19 +1,21 @@
-base_network:
+freebsd_packages:
+  - bhyve-firmware
+  - gtar
+  - screen
+  - tmux
+  - xauth
+
+freebsd_network:
   # autobridge_bridge0: tap?
   # autobridge_interfaces: bridge0
   # cloned_interfaces: bridge0
   # ifconfig_bridge0: addm em0
-  ifconfig_em0: inet 192.168.1.10 netmask 255.255.255.0
-  ifconfig_em0_alias0: inet 192.168.1.40-49
+  ifconfig_em0: inet 192.168.1.4 netmask 255.255.255.0
+  ifconfig_em0_alias0: inet 192.168.1.10-19
 
-base_packages:
-  - bhyve-firmware
-  - gtar
-  - tmux
-
-base_sysctls:
+freebsd_sysctls:
   kern.vt.enable_bell: 0
-  # net.link.tap.up_on_open: 1
+  net.link.tap.up_on_open: 1
 
 jailer_base_snapshot: 1
 jailer_dataset: zdata/jails

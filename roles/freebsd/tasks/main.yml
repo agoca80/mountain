@@ -1,8 +1,24 @@
 ---
 # freebsd/tasks/main.yml
 
-- name: install {{ service }} packages
+- name: freebsd sysctl
+  with_dict: "{{ freebsd_sysctls }}"
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    sysctl_set: yes
+
+- name: freebsd packages
+  loop: "{{ freebsd_packages }}"
   package:
     name: "{{ item }}"
-  loop:
-    - xauth
+    state: present
+
+- name: freebsd network
+  with_dict: "{{ freebsd_network }}"
+  lineinfile:
+    backup: yes
+    regexp: "^{{ item.key }}="
+    path:   "/etc/rc.conf"
+    line:   '{{ item.key }}="{{ item.value }}"'
+  notify: restart network

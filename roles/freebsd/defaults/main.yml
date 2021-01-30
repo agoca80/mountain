@@ -1,0 +1,10 @@
+---
+# roles/freebsd/defaults/main.yml
+
+freebsd_packages: [ ]
+
+freebsd_network: { }
+
+freebsd_services: [ ]
+
+freebsd_sysctls: { }
