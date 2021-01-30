@@ -16,10 +16,11 @@ freebsd_network:
 freebsd_sysctls:
   kern.vt.enable_bell: 0
   net.link.tap.up_on_open: 1
+  security.jail.sysvipc_allowed: 1
 
 jailer_base_snapshot: 1
 jailer_dataset: zdata/jails
-jailer_distsite: ftp://ftp.freebsd.org/pub/FreeBSD/snapshots/amd64/13.0-CURRENT
+jailer_distsite: ftp://ftp.freebsd.org/pub/FreeBSD/releases/amd64/12.2-RELEASE
 jailer_mountpoint: /jails
 
 zfs_pools:
