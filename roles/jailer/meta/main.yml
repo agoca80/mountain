@@ -19,5 +19,3 @@ dependencies:
     service: jail
     packages:
       - gtar
-
-  - role: base

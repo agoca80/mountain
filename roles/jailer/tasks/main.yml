@@ -31,3 +31,7 @@
     mode: "0644"
     backup: yes
     insertbefore: BOF
+
+- name: jailer base jail
+  include_role:
+    role: base
