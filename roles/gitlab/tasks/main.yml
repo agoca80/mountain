@@ -22,3 +22,21 @@
     - { mode: "0600", file: secrets.yml }
     - { mode: "0644", file: puma.rb }
 
+- name: gitlab git config
+  template:
+    src: gitconfig
+    dest: /usr/local/git/.gitconfig
+    owner: git
+    group: git
+    mode: "0644"
+
+- name: gitlab directories
+  file:
+    name: "{{ item.name }}"
+    mode: "{{ item.mode }}"
+    owner: git
+    group: git
+    state: directory
+  loop:
+    - { mode: "0755", name: "/usr/local/git/.ssh" }
+    - { mode: "2770", name: "/usr/local/git/repositories" }
