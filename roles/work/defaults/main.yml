@@ -1,0 +1,2 @@
+work_tfenv_dir: "{{ work_user_bin }}/tfenv"
+work_user_bin: "{{ lookup('env','HOME') }}"

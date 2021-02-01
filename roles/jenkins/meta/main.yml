@@ -1,9 +1,9 @@
 ---
 
 dependencies:
-  - role: service
-    service: jenkins
-    packages:
+  - role: freebsd
+    freebsd_service: jenkins
+    freebsd_packages:
       - docker
       - helm
       - jenkins

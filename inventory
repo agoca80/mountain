@@ -1,4 +1,4 @@
-mountain ansible_host=192.168.1.4
+mountain ansible_host=192.168.1.4 allow_world_readable_tmpfiles=true
 
 gitlab   ansible_host=192.168.1.10
 

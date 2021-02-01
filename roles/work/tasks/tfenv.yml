@@ -1,0 +1,32 @@
+---
+# work/tasks/tfenv.yml
+
+- name: tfenv packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - bash
+    - git-lite
+
+
+- name: tfenv checkout
+  git:
+    repo: https://github.com/tfutils/tfenv.git
+    dest: "{{ work_tfenv_dir }}"
+  become: true
+  become_user: "{{ work_user }}"
+
+- name: tfenv path
+  file:
+    name: "{{ work_user_bin }}"
+    state: directory
+
+- name: tfnv links
+  file:
+    src: "{{ work_tfenv_dir }}/bin/{{ item }}"
+    dest: "{{ work_user_bin }}/bin/{{ item }}"
+    state: link
+  loop:
+    - tfenv
+    - terraform

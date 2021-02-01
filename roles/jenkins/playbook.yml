@@ -1,6 +1,0 @@
----
-# roles/jailer/playbook.yml
-
-- name: jenkins
-  hosts: jenkins
-  roles: [ jenkins ]
